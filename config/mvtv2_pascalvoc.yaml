@@ -1,0 +1,6 @@
+num_epochs: 50
+lr: 0.00006
+batch_size: 8
+backbone: "apple/mobilevitv2-1.0-voc-deeplabv3"
+model_name: 'MobileViTV2PascalVoc' 
+prediction_idxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

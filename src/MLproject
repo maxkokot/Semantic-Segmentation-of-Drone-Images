@@ -1,0 +1,49 @@
+name: Semantic_Drone_Segmentation
+
+conda_env: conda.yaml
+
+entry_points:
+  data-preprocessing:
+    parameters:
+      root-path: {type: str, default: '../data/semantic_drone_dataset/semantic_drone_dataset'}
+      metadata-path: {type: str, default: '../data/colormaps.xlsx'}
+      dataset-version: {type: str, default: '1.0'}
+      img-folder: {type: str, default: 'original_images'}
+      mask-folder: {type: str, default: 'label_images_semantic'}
+      test-size: {type: float, default: 0.2}
+      random-state: {type: int, default: 2024}
+      config-path: {type: str, default: None}
+    command: "python data_preprocessing.py --test-size {test-size} --random-state {random-state} --config-path {config-path}"
+  segformer-finetuning:
+    parameters:
+      num-epochs: {type: int, default: 50}
+      lr: {type: float, default: 0.00006}
+      batch-size: {type: int, default: 8}
+      backbone: {type: str, default: 'nvidia/mit-b0'}
+      model-name: {type: str, default: 'SegFormerImagenet'}
+      config-path: {type: str, default: None}
+    command: "python segformer_finetuning.py --num-epochs {num-epochs} --lr {lr} --batch-size {batch-size} --backbone {backbone} --model-name {model-name} --config-path {config-path}"
+  mvt-finetuning:
+    parameters:
+      num-epochs: {type: int, default: 50}
+      lr: {type: float, default: 0.00006}
+      batch-size: {type: int, default: 8}
+      backbone: {type: str, default: "apple/deeplabv3-mobilevit-small"}
+      model-name: {type: str, default: 'MobileViTVPascalVoc'}
+      config-path: {type: str, default: None}
+    command: "python mvt_finetuning.py --num-epochs {num-epochs} --lr {lr} --batch-size {batch-size} --backbone {backbone} --model-name {model-name} --config-path {config-path}"
+  mvtv2-finetuning:
+    parameters:
+      num-epochs: {type: int, default: 50}
+      lr: {type: float, default: 0.00006}
+      batch-size: {type: int, default: 8}
+      backbone: {type: str, default: "apple/mobilevitv2-1.0-imagenet1k-256"}
+      model-name: {type: str, default: 'MobileViTV2Imagenet'}
+      config-path: {type: str, default: None}
+    command: "python mvtv2_finetuning.py --num-epochs {num-epochs} --lr {lr} --batch-size {batch-size} --backbone {backbone} --model-name {model-name} --config-path {config-path}"
+  data-inference:
+    parameters:
+      model-name: {type: str, default: 'semantic-drone-segmentation'}
+      idxs: {type: str, default: "[0, 1, 2, 3, 4, 5]"}
+      config-path: {type: str, default: None}
+    command: "python data_inference.py --model-name {model-name} --idxs {idxs} --config-path {config-path}"

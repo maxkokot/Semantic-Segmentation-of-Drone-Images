@@ -1,0 +1,7 @@
+root_path: '../data/semantic_drone_dataset/semantic_drone_dataset'
+metadata_path: '../data/colormaps.xlsx'
+dataset_version: '1.0'
+img_folder: 'original_images'
+mask_folder: 'label_images_semantic'
+test_size: 0.2   
+random_state: 2024            

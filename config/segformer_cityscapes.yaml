@@ -1,0 +1,6 @@
+num_epochs: 50
+lr: 0.00006
+batch_size: 8
+backbone: "nvidia/segformer-b0-finetuned-cityscapes-768-768"
+model_name: 'SegFormerCityScapes' 
+prediction_idxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
