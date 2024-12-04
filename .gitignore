@@ -77,9 +77,11 @@ target/
 
 # exclude data from source control by default
 /data/*
+!/data/.gitkeep 
 
 # exclude mlruns
 /mlruns/*
+!/mlruns/.gitkeep 
 
 # exclude pretrained models' files
 /src/apple
