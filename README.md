@@ -90,6 +90,9 @@ mlflow ui
 
 Choose `Semantic_Drone_Segmentation` amoung experiments and you will see a summary table with all launched runs. To benchmark the models, click `Show more columns` and then choose `eval_mean_iou`.
 
+![Alt text](screenshot.png)
+
+
 Project Organization
 ------------
 
